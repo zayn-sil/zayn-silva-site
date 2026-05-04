@@ -79,10 +79,6 @@
 
   /* Aspect-ratio image placeholders: cap height */
   [style*="aspect-ratio: 1/1"], [style*="aspect-ratio: 4/5"] { aspect-ratio: 16/10 !important; max-height: 280px; }
-
-  /* Video section on mobile: reduce reel and media heights */
-  #video iframe { height: 580px !important; }
-  #video img { height: 320px !important; }
 }
 
 @media (max-width: 480px) {
@@ -111,9 +107,8 @@
 </nav>
 
 <section style="position: relative; min-height: 720px; overflow: hidden; color: #fff;">
-  <div style="position: absolute; inset: 0; background: linear-gradient(120deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.55) 45%, rgba(10,10,10,0.2) 70%, rgba(10,10,10,0.5) 100%), url('zayn-hero-speaking.jpg'); background-size: cover; background-position: center right;"></div>
-  <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(42,26,10,0.35) 0%, rgba(26,18,8,0.25) 50%, rgba(10,10,10,0.5) 100%);"></div>
-  <div style="position: absolute; right: 0; top: 0; bottom: 0; width: 50%; background: linear-gradient(90deg, rgba(10,10,10,0.6) 0%, transparent 40%);"></div>
+  <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.58) 38%, rgba(10,10,10,0.28) 68%, rgba(10,10,10,0.45) 100%), url('zayn-hero-speaking.jpg'); background-size: cover; background-position: center right;"></div>
+  <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(42,26,10,0.28) 0%, rgba(26,18,8,0.18) 50%, rgba(10,10,10,0.35) 100%);"></div>
 
   <div style="position: relative; z-index: 2; padding: 110px 48px 90px; max-width: 60%;">
     <div class="fade-up" style="display: inline-flex; align-items: center; gap: 12px; padding: 11px 22px; border: 1px solid rgba(255,255,255,0.25); border-radius: 999px; margin-bottom: 36px; font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; background: rgba(255,255,255,0.04);">
@@ -321,25 +316,25 @@
       <h2 style="font-size: 38px; font-weight: 600; margin: 0; letter-spacing: -1.2px; color: #fff; font-family: 'Inter', system-ui, sans-serif;">Watch Zayn in action.</h2>
     </div>
 
-    <div style="display: flex; gap: 24px; align-items: stretch; justify-content: center; flex-wrap: wrap;">
-      <div style="flex: 0 0 380px; max-width: 100%; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto;">
+      <div style="position: relative; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
         <iframe
-          src="https://www.instagram.com/p/DInDq3COUuL/embed/"
-          style="display: block; width: 100%; height: 720px; border: 0;"
-          allowtransparency="true"
+          src="https://www.youtube.com/embed/xAOoKPbVLJ8"
+          style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"
+          title="Zayn Silva speaking"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen
-          loading="lazy"
-          title="Zayn Silva on Instagram">
+          loading="lazy">
         </iframe>
       </div>
 
-      <div style="flex: 1 1 400px; min-width: 280px; max-width: 580px; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
-        <img src="zayn-media1.jpg" alt="Zayn on camera for a media interview" style="width: 100%; height: 720px; object-fit: cover; display: block;" />
+      <div style="aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+        <img src="zayn-media1.jpg" alt="Zayn on camera for a media interview" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
       </div>
     </div>
 
     <div style="text-align: center; font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 28px; letter-spacing: 0.3px;">
-      <a href="https://www.instagram.com/p/DInDq3COUuL/" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.7); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.25); padding-bottom: 2px;">View on Instagram</a>
+      <a href="https://youtu.be/xAOoKPbVLJ8" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.7); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.25); padding-bottom: 2px;">Watch on YouTube</a>
     </div>
 
   </div>
