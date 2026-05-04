@@ -2,6 +2,8 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+*, *::before, *::after { box-sizing: border-box; }
+img { max-width: 100%; height: auto; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes pulseDot { 0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); } 50% { box-shadow: 0 0 0 8px rgba(34,197,94,0); } }
 @keyframes shimmer { 0% { background-position: -400px 0; } 100% { background-position: 400px 0; } }
@@ -28,22 +30,47 @@
 .social-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background: #0a0a0a; color: #fff; border-radius: 999px; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s ease; font-family: 'Inter', system-ui, sans-serif; }
 .social-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
 
+@media (max-width: 1024px) {
+  /* Tablet: shrink hero text container so it doesn't sit at 60% on mid-size screens */
+  section[style*="min-height: 720px"] > div:last-child { max-width: 78% !important; padding: 90px 36px 70px !important; }
+  section { padding-left: 36px !important; padding-right: 36px !important; }
+}
+
 @media (max-width: 768px) {
-  /* Reduce padding across all sections */
-  section { padding: 64px 22px !important; }
+  /* All sections: reduce padding aggressively */
+  section { padding: 60px 22px !important; }
 
-  /* Nav: hide center links, keep logo + booking pill */
-  nav { padding: 16px 22px !important; }
+  /* Nav: hide the center social/contact links, keep logo + booking pill */
+  nav { padding: 14px 18px !important; gap: 12px; flex-wrap: wrap; }
   nav > div:nth-child(2) { display: none !important; }
+  nav > div:first-child { font-size: 13px !important; letter-spacing: 3px !important; }
+  nav > div:last-child { font-size: 10px !important; }
 
-  /* Hero section adjustments */
-  section[style*="min-height: 720px"] { min-height: auto !important; }
-  section[style*="min-height: 720px"] > div:nth-child(3) { display: none !important; }
-  section[style*="min-height: 720px"] > div:last-child { max-width: 100% !important; padding: 80px 22px 60px !important; }
-  h1[class="fade-up"], section h1 { font-size: 44px !important; line-height: 1.05 !important; letter-spacing: -1.5px !important; }
+  /* HERO: full width text, smaller heading, image fades softer */
+  section[style*="min-height: 720px"] { min-height: auto !important; padding: 0 !important; }
+  section[style*="min-height: 720px"] > div:last-child {
+    max-width: 100% !important;
+    padding: 70px 22px 50px !important;
+    position: relative !important;
+  }
+  /* Hero overlays: keep both, but darken image so text always reads on phone */
+  section[style*="min-height: 720px"] > div:first-child {
+    background: linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.7) 60%, rgba(10,10,10,0.5) 100%), url('zayn-hero-speaking.jpg') !important;
+    background-size: cover !important;
+    background-position: center top !important;
+  }
+  h1, h1[class="fade-up"] { font-size: 42px !important; line-height: 1.05 !important; letter-spacing: -1.5px !important; }
   #rotator { min-width: 0 !important; display: inline !important; }
+  /* Hero pill smaller on mobile */
+  section[style*="min-height: 720px"] [class*="fade-up"][style*="border-radius: 999px"] {
+    font-size: 11px !important;
+    padding: 8px 14px !important;
+    letter-spacing: 1.5px !important;
+  }
+  /* Hero description paragraph */
+  section[style*="min-height: 720px"] p { font-size: 16px !important; }
 
-  /* Stack all multi-column grids */
+  /* Stack ALL multi-column grids on mobile */
   [style*="grid-template-columns: repeat(4"],
   [style*="grid-template-columns: repeat(3"],
   [style*="grid-template-columns: repeat(2"],
@@ -53,41 +80,82 @@
   [style*="grid-template-columns: 1.2fr 1fr"],
   [style*="grid-template-columns: 1fr 1fr"] {
     grid-template-columns: 1fr !important;
-    gap: 20px !important;
+    gap: 24px !important;
   }
 
   /* Smaller h2 across the site */
   h2 { font-size: 30px !important; line-height: 1.1 !important; letter-spacing: -1px !important; }
-  h3 { font-size: 18px !important; }
+  h3 { font-size: 17px !important; }
 
   /* Buttons: keep tappable but proportional */
-  .book-cta, .ghost-btn { padding: 14px 26px !important; font-size: 14px !important; }
-  .modern-btn { padding: 13px 24px !important; font-size: 14px !important; }
-  .pride-cta { padding: 18px 32px !important; font-size: 15px !important; }
+  .book-cta, .ghost-btn { padding: 14px 24px !important; font-size: 14px !important; }
+  .modern-btn { padding: 13px 22px !important; font-size: 13.5px !important; }
+  .pride-cta { padding: 18px 30px !important; font-size: 15px !important; }
+  /* Hero CTA row wraps cleanly on phone */
+  section[style*="min-height: 720px"] [style*="display: flex"][style*="gap"] { flex-wrap: wrap !important; }
 
-  /* Featured In / Spoken At / Trusted By: smaller text on mobile */
-  section [style*="font-size: 22px"][style*="font-family"] { font-size: 17px !important; }
+  /* Featured In: smaller publication names so they wrap nicely */
+  section [style*="font-size: 22px"][style*="font-family"] { font-size: 16px !important; }
   section [style*="font-size: 19px"][style*="font-family"] { font-size: 15px !important; }
-  section [style*="font-size: 24px"][style*="font-family"] { font-size: 18px !important; }
-  section [style*="font-size: 20px"][style*="font-family"] { font-size: 16px !important; }
+  section [style*="font-size: 24px"][style*="font-family"] { font-size: 17px !important; }
+  section [style*="font-size: 20px"][style*="font-family"] { font-size: 15px !important; }
+  section [style*="font-size: 17px"][style*="font-family"] { font-size: 15px !important; }
+  /* Featured In gap reduction */
+  section [style*="gap: 36px"] { gap: 20px !important; row-gap: 14px !important; }
 
   /* Testimonial text smaller */
-  section p[style*="font-size: 30px"] { font-size: 22px !important; }
+  section p[style*="font-size: 30px"] { font-size: 21px !important; line-height: 1.35 !important; }
+  section [style*="font-size: 96px"] { font-size: 72px !important; }
 
-  /* Footer: stack */
-  footer { flex-direction: column !important; gap: 18px !important; padding: 36px 22px !important; text-align: center; }
+  /* Photo placeholder containers: cap height so they don't dominate the screen */
+  [style*="aspect-ratio: 1/1"], [style*="aspect-ratio: 4/5"] { aspect-ratio: 16/10 !important; max-height: 320px; }
 
-  /* Aspect-ratio image placeholders: cap height */
-  [style*="aspect-ratio: 1/1"], [style*="aspect-ratio: 4/5"] { aspect-ratio: 16/10 !important; max-height: 280px; }
+  /* About / Schools / Conferences / Preaching sections: photo first, then text on mobile feels natural */
+  section[style*="grid-template-columns: 1fr 1.4fr"] > div:first-child,
+  section[style*="grid-template-columns: 1.4fr 1fr"] > div:last-child {
+    order: -1;
+  }
+
+  /* All images responsive */
+  img { max-width: 100%; height: auto; }
+
+  /* Form: stack rows, full width inputs */
+  form input, form select, form textarea { width: 100% !important; }
+
+  /* Inquire section: full width on mobile */
+  section[id="contact"] [style*="grid-template-columns: 1fr 1.2fr"] { gap: 32px !important; }
+
+  /* Metrics grid: single column on mobile */
+  #metricsGrid { grid-template-columns: 1fr !important; gap: 12px !important; }
+
+  /* Footer: stack vertical, centered */
+  footer { flex-direction: column !important; gap: 18px !important; padding: 32px 22px !important; text-align: center; }
+
+  /* Inquire heading smaller */
+  section[id="contact"] h2 { font-size: 32px !important; }
+
+  /* Services section header smaller on mobile */
+  section[style*="radial-gradient(circle at 18%"] h2 { font-size: 34px !important; }
 }
 
 @media (max-width: 480px) {
-  section { padding: 52px 18px !important; }
-  h1 { font-size: 38px !important; }
+  section { padding: 50px 16px !important; }
+  h1, h1[class="fade-up"] { font-size: 36px !important; }
   h2 { font-size: 26px !important; }
-  .pride-cta { padding: 16px 26px !important; font-size: 14.5px !important; width: 100%; justify-content: center; }
-  nav { padding: 14px 18px !important; }
-  nav > div:first-child { font-size: 13px !important; letter-spacing: 3px !important; }
+  .pride-cta { padding: 16px 22px !important; font-size: 14px !important; width: 100%; justify-content: center; box-sizing: border-box; }
+  .book-cta, .ghost-btn, .modern-btn { padding: 12px 20px !important; font-size: 13.5px !important; }
+  /* Featured In: even smaller and tighter */
+  section [style*="font-size: 22px"][style*="font-family"] { font-size: 14px !important; }
+  section [style*="font-size: 19px"][style*="font-family"] { font-size: 14px !important; }
+  section [style*="font-size: 24px"][style*="font-family"] { font-size: 15px !important; }
+  section [style*="font-size: 20px"][style*="font-family"] { font-size: 14px !important; }
+  /* Hero pill stays small */
+  section[style*="min-height: 720px"] [class*="fade-up"][style*="border-radius: 999px"] {
+    font-size: 10px !important;
+    padding: 7px 12px !important;
+  }
+  /* Footer logo letter-spacing tightens */
+  nav > div:first-child { letter-spacing: 2px !important; font-size: 12px !important; }
 }
 </style>
 
@@ -134,19 +202,21 @@
 <section style="background: #fff; color: #0a0a0a; padding: 64px 48px; border-top: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08);">
   <div style="max-width: 1100px; margin: 0 auto;">
 
-    <div style="text-align: center;">
-      <div style="font-size: 11px; letter-spacing: 4px; color: rgba(0,0,0,0.5); text-transform: uppercase; font-weight: 500; margin-bottom: 22px;">Featured In</div>
-      <div style="display: flex; justify-content: center; align-items: center; gap: 36px; flex-wrap: wrap; row-gap: 18px;">
-        <span style="font-family: 'Times New Roman', serif; font-size: 22px; font-weight: 500; color: #0a0a0a;">The New York Times</span>
-        <span style="font-family: 'Didot', 'Bodoni 72', serif; font-size: 24px; font-weight: 400; letter-spacing: 1px; color: #0a0a0a;">VOGUE</span>
-        <span style="font-family: Georgia, serif; font-size: 19px; font-weight: 700; font-style: italic; color: #0a0a0a;">USA TODAY</span>
-        <span style="font-family: Helvetica, sans-serif; font-size: 22px; font-weight: 900; letter-spacing: -1px; color: #0a0a0a;">BET</span>
-        <span style="font-family: Helvetica, sans-serif; font-size: 22px; font-weight: 900; letter-spacing: -2px; color: #0a0a0a;">VH1</span>
-        <span style="font-family: Helvetica, sans-serif; font-size: 19px; font-weight: 800; letter-spacing: -0.5px; color: #0a0a0a;">Refinery29</span>
-        <span style="font-family: Georgia, serif; font-size: 17px; font-weight: 600; color: #0a0a0a;">Baptist News Global</span>
-        <span style="font-family: Georgia, serif; font-size: 15px; font-style: italic; color: rgba(0,0,0,0.75);">Philadelphia Gay News</span>
-      </div>
-    </div>
+```
+<div style="text-align: center;">
+  <div style="font-size: 11px; letter-spacing: 4px; color: rgba(0,0,0,0.5); text-transform: uppercase; font-weight: 500; margin-bottom: 22px;">Featured In</div>
+  <div style="display: flex; justify-content: center; align-items: center; gap: 36px; flex-wrap: wrap; row-gap: 18px;">
+    <span style="font-family: 'Times New Roman', serif; font-size: 22px; font-weight: 500; color: #0a0a0a;">The New York Times</span>
+    <span style="font-family: 'Didot', 'Bodoni 72', serif; font-size: 24px; font-weight: 400; letter-spacing: 1px; color: #0a0a0a;">VOGUE</span>
+    <span style="font-family: Georgia, serif; font-size: 19px; font-weight: 700; font-style: italic; color: #0a0a0a;">USA TODAY</span>
+    <span style="font-family: Helvetica, sans-serif; font-size: 22px; font-weight: 900; letter-spacing: -1px; color: #0a0a0a;">BET</span>
+    <span style="font-family: Helvetica, sans-serif; font-size: 22px; font-weight: 900; letter-spacing: -2px; color: #0a0a0a;">VH1</span>
+    <span style="font-family: Helvetica, sans-serif; font-size: 19px; font-weight: 800; letter-spacing: -0.5px; color: #0a0a0a;">Refinery29</span>
+    <span style="font-family: Georgia, serif; font-size: 17px; font-weight: 600; color: #0a0a0a;">Baptist News Global</span>
+    <span style="font-family: Georgia, serif; font-size: 15px; font-style: italic; color: rgba(0,0,0,0.75);">Philadelphia Gay News</span>
+  </div>
+</div>
+```
 
   </div>
 </section>
@@ -184,42 +254,45 @@
       <p style="font-size: 16px; line-height: 1.6; color: rgba(255,255,255,0.65); max-width: 520px; margin: 0 auto;">Helping your organization speak with clarity, courage, and reach, wherever your audience meets you.</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;">
-      <div class="book-card" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid #60a5fa; border-radius: 12px; padding: 36px 32px; backdrop-filter: blur(8px);">
-        <div style="font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #60a5fa; font-weight: 600; margin-bottom: 14px;">01</div>
-        <h3 style="font-size: 24px; font-weight: 600; margin: 0 0 12px; color: #fff; letter-spacing: -0.5px;">Keynotes &amp; Conferences</h3>
-        <p style="font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 0;">Plenaries, panels, main-stage talks, and media engagements for nonprofit, faith, and civic convenings.</p>
-      </div>
-      <div class="book-card" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid #fb923c; border-radius: 12px; padding: 36px 32px; backdrop-filter: blur(8px);">
-        <div style="font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #fb923c; font-weight: 600; margin-bottom: 14px;">02</div>
-        <h3 style="font-size: 24px; font-weight: 600; margin: 0 0 12px; color: #fff; letter-spacing: -0.5px;">Schools &amp; Workshops</h3>
-        <p style="font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 0;">Assemblies, faculty trainings, parent evenings, and lay-leader development for independent and public schools.</p>
-      </div>
-      <div class="book-card" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid #a78bfa; border-radius: 12px; padding: 36px 32px; backdrop-filter: blur(8px);">
-        <div style="font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #a78bfa; font-weight: 600; margin-bottom: 14px;">03</div>
-        <h3 style="font-size: 24px; font-weight: 600; margin: 0 0 12px; color: #fff; letter-spacing: -0.5px;">Preaching &amp; Faith Spaces</h3>
-        <p style="font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 0;">Pulpit supply, guest preaching, multi-week residencies, and faith-rooted gatherings.</p>
-      </div>
-      <div class="book-card" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid #4ade80; border-radius: 12px; padding: 36px 32px; backdrop-filter: blur(8px);">
-        <div style="font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #4ade80; font-weight: 600; margin-bottom: 14px;">04</div>
-        <h3 style="font-size: 24px; font-weight: 600; margin: 0 0 12px; color: #fff; letter-spacing: -0.5px;">Strategic Consulting</h3>
-        <p style="font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 0;">Digital strategy, communications audits, DEI advisory, and partnership collaborations.</p>
-      </div>
-    </div>
+```
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;">
+  <div class="book-card" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid #60a5fa; border-radius: 12px; padding: 36px 32px; backdrop-filter: blur(8px);">
+    <div style="font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #60a5fa; font-weight: 600; margin-bottom: 14px;">01</div>
+    <h3 style="font-size: 24px; font-weight: 600; margin: 0 0 12px; color: #fff; letter-spacing: -0.5px;">Keynotes &amp; Conferences</h3>
+    <p style="font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 0;">Plenaries, panels, main-stage talks, and media engagements for nonprofit, faith, and civic convenings.</p>
+  </div>
+  <div class="book-card" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid #fb923c; border-radius: 12px; padding: 36px 32px; backdrop-filter: blur(8px);">
+    <div style="font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #fb923c; font-weight: 600; margin-bottom: 14px;">02</div>
+    <h3 style="font-size: 24px; font-weight: 600; margin: 0 0 12px; color: #fff; letter-spacing: -0.5px;">Schools &amp; Workshops</h3>
+    <p style="font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 0;">Assemblies, faculty trainings, parent evenings, and lay-leader development for independent and public schools.</p>
+  </div>
+  <div class="book-card" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid #a78bfa; border-radius: 12px; padding: 36px 32px; backdrop-filter: blur(8px);">
+    <div style="font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #a78bfa; font-weight: 600; margin-bottom: 14px;">03</div>
+    <h3 style="font-size: 24px; font-weight: 600; margin: 0 0 12px; color: #fff; letter-spacing: -0.5px;">Preaching &amp; Faith Spaces</h3>
+    <p style="font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 0;">Pulpit supply, guest preaching, multi-week residencies, and faith-rooted gatherings.</p>
+  </div>
+  <div class="book-card" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid #4ade80; border-radius: 12px; padding: 36px 32px; backdrop-filter: blur(8px);">
+    <div style="font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #4ade80; font-weight: 600; margin-bottom: 14px;">04</div>
+    <h3 style="font-size: 24px; font-weight: 600; margin: 0 0 12px; color: #fff; letter-spacing: -0.5px;">Strategic Consulting</h3>
+    <p style="font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.7); margin: 0;">Digital strategy, communications audits, DEI advisory, and partnership collaborations.</p>
+  </div>
+</div>
 
-    <div style="text-align: center; margin-top: 72px;">
-      <div style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; margin-bottom: 24px;">
-        <span class="live-dot"></span>
-        <span style="font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.85); font-weight: 500;">Now Booking 2026</span>
-      </div>
-      <div>
-        <a href="#contact" class="pride-cta">
-          Book me for Pride &amp; Fall
-          <svg width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-      <div style="font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 18px; letter-spacing: 0.3px;">Pride Month (June 2026) and Fall season dates filling fast.</div>
-    </div>
+<div style="text-align: center; margin-top: 72px;">
+  <div style="display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; margin-bottom: 24px;">
+    <span class="live-dot"></span>
+    <span style="font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.85); font-weight: 500;">Now Booking 2026</span>
+  </div>
+  <div>
+    <a href="#contact" class="pride-cta">
+      Book me for Pride &amp; Fall
+      <svg width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+  <div style="font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 18px; letter-spacing: 0.3px;">Pride Month (June 2026) and Fall season dates filling fast.</div>
+</div>
+```
+
   </div>
 </section>
 
@@ -310,34 +383,36 @@
 <section id="video" style="background: #0a0a0a; color: #fff; padding: 100px 48px; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); scroll-margin-top: 80px;">
   <div style="max-width: 1040px; margin: 0 auto;">
 
-    <div style="text-align: center; margin-bottom: 48px;">
-      <div class="section-num" style="margin-bottom: 14px; color: rgba(255,255,255,0.55);">Watch</div>
-      <h2 style="font-size: 38px; font-weight: 600; margin: 0; letter-spacing: -1.2px; color: #fff; font-family: 'Inter', system-ui, sans-serif;">Watch Zayn in action.</h2>
-    </div>
+```
+<div style="text-align: center; margin-bottom: 48px;">
+  <div class="section-num" style="margin-bottom: 14px; color: rgba(255,255,255,0.55);">Watch</div>
+  <h2 style="font-size: 38px; font-weight: 600; margin: 0; letter-spacing: -1.2px; color: #fff; font-family: 'Inter', system-ui, sans-serif;">Watch Zayn in action.</h2>
+</div>
 
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto;">
-      <div style="position: relative; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
-        <iframe
-          src="https://www.youtube.com/embed/xAOoKPbVLJ8"
-          style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"
-          title="Zayn Silva speaking"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          loading="lazy">
-        </iframe>
-      </div>
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto;">
+  <div style="position: relative; aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+    <iframe
+      src="https://www.youtube.com/embed/xAOoKPbVLJ8"
+      style="position: absolute; inset: 0; width: 100%; height: 100%; border: 0;"
+      title="Zayn Silva speaking"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
 
-      <div style="aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
-        <img src="zayn-media1.jpg" alt="Zayn on camera for a media interview" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
-      </div>
-    </div>
+  <div style="aspect-ratio: 16/9; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+    <img src="zayn-media1.jpg" alt="Zayn on camera for a media interview" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+  </div>
+</div>
 
-    <div style="text-align: center; margin-top: 40px;">
-      <a href="#contact" class="book-cta" style="text-decoration: none;">
-        Book me
-        <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
+<div style="text-align: center; margin-top: 40px;">
+  <a href="#contact" class="book-cta" style="text-decoration: none;">
+    Book me
+    <svg width="16" height="16" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+```
 
   </div>
 </section>
@@ -381,64 +456,67 @@
       </div>
     </div>
 
-    <div id="form-wrap">
-      <form id="inquiryForm" action="https://formspree.io/f/xgodaaew" method="POST" style="display: flex; flex-direction: column; gap: 16px;" novalidate>
-        <input type="hidden" name="_subject" value="New booking inquiry from zaynsilva.com" />
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-          <div>
-            <label for="f-name" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">Name <span style="color: #dc2626;">*</span></label>
-            <input id="f-name" name="name" type="text" required style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; background: #fafafa; transition: border-color 0.15s, background 0.15s;" />
-          </div>
-          <div>
-            <label for="f-email" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">Email <span style="color: #dc2626;">*</span></label>
-            <input id="f-email" name="email" type="email" required style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; background: #fafafa; transition: border-color 0.15s, background 0.15s;" />
-          </div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-          <div>
-            <label for="f-org" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">Organization</label>
-            <input id="f-org" name="organization" type="text" style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; background: #fafafa; transition: border-color 0.15s, background 0.15s;" />
-          </div>
-          <div>
-            <label for="f-phone" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">Phone</label>
-            <input id="f-phone" name="phone" type="tel" style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; background: #fafafa; transition: border-color 0.15s, background 0.15s;" />
-          </div>
-        </div>
-        <div>
-          <label for="f-service" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">What are you booking? <span style="color: #dc2626;">*</span></label>
-          <select id="f-service" name="service" required style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; background: #fafafa; transition: border-color 0.15s, background 0.15s;">
-            <option value="">Select a service...</option>
-            <option>Keynotes &amp; Conferences</option>
-            <option>Schools &amp; Workshops</option>
-            <option>Preaching &amp; Faith Spaces</option>
-            <option>Strategic Consulting</option>
-            <option>Something else</option>
-          </select>
-        </div>
-        <div>
-          <label for="f-date" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">Date of Event <span style="color: #dc2626;">*</span></label>
-          <input id="f-date" name="event_date" type="date" required style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; background: #fafafa; transition: border-color 0.15s, background 0.15s; color: #0a0a0a;" />
-          <div style="font-size: 12px; color: rgba(0,0,0,0.5); margin-top: 6px;">If your date is flexible, pick a target and note specifics in the message below.</div>
-        </div>
-        <div>
-          <label for="f-message" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">Tell me about it <span style="color: #dc2626;">*</span></label>
-          <textarea id="f-message" name="message" rows="4" required style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; resize: vertical; background: #fafafa; transition: border-color 0.15s, background 0.15s;"></textarea>
-        </div>
-        <div id="form-error" style="display: none; font-size: 13.5px; color: #dc2626; padding: 10px 14px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; margin-top: 4px;">Please fill in all required fields.</div>
-        <button type="submit" style="background: #0a0a0a; color: #fff; border: none; padding: 18px 36px; border-radius: 999px; font-weight: 600; font-size: 16px; letter-spacing: 0; cursor: pointer; font-family: 'Inter', system-ui, sans-serif; margin-top: 12px; display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; transition: all 0.2s ease; box-shadow: 0 4px 14px rgba(0,0,0,0.15);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.25)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 14px rgba(0,0,0,0.15)'">
-          Send Inquiry
-          <svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </form>
-    </div>
-
-    <div id="thank-you" style="display: none; padding: 56px 40px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; text-align: center;">
-      <div style="width: 56px; height: 56px; border-radius: 50%; background: #22c55e; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#0a0a0a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+```
+<div id="form-wrap">
+  <form id="inquiryForm" action="https://formspree.io/f/xgodaaew" method="POST" style="display: flex; flex-direction: column; gap: 16px;" novalidate>
+    <input type="hidden" name="_subject" value="New booking inquiry from zaynsilva.com" />
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div>
+        <label for="f-name" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">Name <span style="color: #dc2626;">*</span></label>
+        <input id="f-name" name="name" type="text" required style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; background: #fafafa; transition: border-color 0.15s, background 0.15s;" />
       </div>
-      <h3 style="font-size: 24px; font-weight: 600; margin: 0 0 12px; color: #0a0a0a; letter-spacing: -0.5px;">Thank you for inquiring.</h3>
-      <p style="font-size: 16px; line-height: 1.6; color: rgba(0,0,0,0.7); margin: 0; max-width: 400px; margin: 0 auto;">I will respond to you within 24 hours.</p>
+      <div>
+        <label for="f-email" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">Email <span style="color: #dc2626;">*</span></label>
+        <input id="f-email" name="email" type="email" required style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; background: #fafafa; transition: border-color 0.15s, background 0.15s;" />
+      </div>
     </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div>
+        <label for="f-org" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">Organization</label>
+        <input id="f-org" name="organization" type="text" style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; background: #fafafa; transition: border-color 0.15s, background 0.15s;" />
+      </div>
+      <div>
+        <label for="f-phone" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">Phone</label>
+        <input id="f-phone" name="phone" type="tel" style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; background: #fafafa; transition: border-color 0.15s, background 0.15s;" />
+      </div>
+    </div>
+    <div>
+      <label for="f-service" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">What are you booking? <span style="color: #dc2626;">*</span></label>
+      <select id="f-service" name="service" required style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; background: #fafafa; transition: border-color 0.15s, background 0.15s;">
+        <option value="">Select a service...</option>
+        <option>Keynotes &amp; Conferences</option>
+        <option>Schools &amp; Workshops</option>
+        <option>Preaching &amp; Faith Spaces</option>
+        <option>Strategic Consulting</option>
+        <option>Something else</option>
+      </select>
+    </div>
+    <div>
+      <label for="f-date" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">Date of Event <span style="color: #dc2626;">*</span></label>
+      <input id="f-date" name="event_date" type="date" required style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; background: #fafafa; transition: border-color 0.15s, background 0.15s; color: #0a0a0a;" />
+      <div style="font-size: 12px; color: rgba(0,0,0,0.5); margin-top: 6px;">If your date is flexible, pick a target and note specifics in the message below.</div>
+    </div>
+    <div>
+      <label for="f-message" style="display: block; font-size: 12px; letter-spacing: 1px; color: rgba(0,0,0,0.6); margin-bottom: 8px; text-transform: uppercase;">Tell me about it <span style="color: #dc2626;">*</span></label>
+      <textarea id="f-message" name="message" rows="4" required style="width: 100%; padding: 14px 16px; border: 1px solid rgba(0,0,0,0.18); border-radius: 6px; font-family: 'Inter', system-ui, sans-serif; font-size: 15px; box-sizing: border-box; resize: vertical; background: #fafafa; transition: border-color 0.15s, background 0.15s;"></textarea>
+    </div>
+    <div id="form-error" style="display: none; font-size: 13.5px; color: #dc2626; padding: 10px 14px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; margin-top: 4px;">Please fill in all required fields.</div>
+    <button type="submit" style="background: #0a0a0a; color: #fff; border: none; padding: 18px 36px; border-radius: 999px; font-weight: 600; font-size: 16px; letter-spacing: 0; cursor: pointer; font-family: 'Inter', system-ui, sans-serif; margin-top: 12px; display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; transition: all 0.2s ease; box-shadow: 0 4px 14px rgba(0,0,0,0.15);" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,0.25)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 14px rgba(0,0,0,0.15)'">
+      Send Inquiry
+      <svg width="16" height="16" viewBox="0 0 14 14" fill="none"><path d="M3 7H11M11 7L7 3M11 7L7 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </form>
+</div>
+
+<div id="thank-you" style="display: none; padding: 56px 40px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px; text-align: center;">
+  <div style="width: 56px; height: 56px; border-radius: 50%; background: #22c55e; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 20px;">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#0a0a0a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+  <h3 style="font-size: 24px; font-weight: 600; margin: 0 0 12px; color: #0a0a0a; letter-spacing: -0.5px;">Thank you for inquiring.</h3>
+  <p style="font-size: 16px; line-height: 1.6; color: rgba(0,0,0,0.7); margin: 0; max-width: 400px; margin: 0 auto;">I will respond to you within 24 hours.</p>
+</div>
+```
+
   </div>
 </section>
 
@@ -474,6 +552,15 @@
 </div>
 
 <script>
+(function(){
+  // Ensure viewport meta exists so mobile browsers render at device width
+  if (!document.querySelector('meta[name="viewport"]')) {
+    var vp = document.createElement('meta');
+    vp.name = 'viewport';
+    vp.content = 'width=device-width, initial-scale=1.0, viewport-fit=cover';
+    if (document.head) document.head.appendChild(vp);
+  }
+})();
 (function(){
   const roles = ["speaker","preacher","writer","strategist","activist","consultant"];
   const colors = ["#f59e0b","#7c3aed","#22c55e","#60a5fa","#ec4899","#06b6d4"];
