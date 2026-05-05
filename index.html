@@ -32,7 +32,7 @@ img { max-width: 100%; height: auto; }
 
 @media (max-width: 1024px) {
   /* Tablet: shrink hero text container so it doesn't sit at 60% on mid-size screens */
-  section[style*="min-height: 720px"] > div:last-child { max-width: 78% !important; padding: 90px 36px 70px !important; }
+  section[style*="min-height: 720px"] > div:nth-child(3) { max-width: 78% !important; padding: 90px 36px 70px !important; }
   section { padding-left: 36px !important; padding-right: 36px !important; }
 }
 
@@ -55,7 +55,7 @@ img { max-width: 100%; height: auto; }
     display: none !important;
   }
   /* Content wrapper becomes the whole hero, with a real photo block stacked on top */
-  section[style*="min-height: 720px"] > div:last-child {
+  section[style*="min-height: 720px"] > div:nth-child(3) {
     max-width: 100% !important;
     padding: 0 !important;
     position: relative !important;
@@ -63,7 +63,7 @@ img { max-width: 100%; height: auto; }
     flex-direction: column !important;
   }
   /* Inject a real photo block above the content, full-width with a soft fade at the bottom */
-  section[style*="min-height: 720px"] > div:last-child::before {
+  section[style*="min-height: 720px"] > div:nth-child(3)::before {
     content: '';
     display: block;
     width: 100%;
@@ -76,29 +76,29 @@ img { max-width: 100%; height: auto; }
     flex-shrink: 0;
   }
   /* Pull content up slightly so it overlaps the photo's bottom fade */
-  section[style*="min-height: 720px"] > div:last-child > * {
+  section[style*="min-height: 720px"] > div:nth-child(3) > * {
     padding-left: 22px !important;
     padding-right: 22px !important;
     position: relative;
     z-index: 2;
   }
-  section[style*="min-height: 720px"] > div:last-child > *:first-child {
+  section[style*="min-height: 720px"] > div:nth-child(3) > *:first-child {
     margin-top: -32px !important;
   }
   /* Content gets a top padding gap, bottom padding for the buttons */
-  section[style*="min-height: 720px"] > div:last-child > *:last-child {
+  section[style*="min-height: 720px"] > div:nth-child(3) > *:last-child {
     padding-bottom: 56px !important;
   }
   /* Hero typography: scaled for phone */
   h1, h1[class="fade-up"] { font-size: 56px !important; line-height: 1 !important; letter-spacing: -2px !important; margin-bottom: 8px !important; }
   /* Rotator line on mobile */
-  section[style*="min-height: 720px"] > div:last-child > div[class="fade-up"][style*="font-size: 32px"] {
+  section[style*="min-height: 720px"] > div:nth-child(3) > div[class="fade-up"][style*="font-size: 32px"] {
     font-size: 24px !important;
     margin-bottom: 22px !important;
   }
   #rotator { min-width: 0 !important; display: inline !important; }
   /* Tagline above name: smaller letter spacing on mobile */
-  section[style*="min-height: 720px"] > div:last-child > div[class="fade-up"][style*="letter-spacing: 3.5px"] {
+  section[style*="min-height: 720px"] > div:nth-child(3) > div[class="fade-up"][style*="letter-spacing: 3.5px"] {
     font-size: 11px !important;
     letter-spacing: 2px !important;
     margin-bottom: 14px !important;
@@ -113,12 +113,13 @@ img { max-width: 100%; height: auto; }
   /* Hero description paragraph */
   section[style*="min-height: 720px"] p { font-size: 16px !important; }
 
-  /* Photo credit on mobile: sit at the bottom-right of the photo block (which ends ~360-380px down) */
+  /* Photo credit on mobile: position relative to the wrapper, sitting just inside the bottom-right of the photo block */
   .hero-credit {
     bottom: auto !important;
-    top: calc(56vw - 24px) !important;
+    top: calc(56vw - 26px) !important;
     right: 14px !important;
-    font-size: 9.5px !important;
+    font-size: 10px !important;
+    color: rgba(255,255,255,0.7) !important;
   }
 
   /* Stack ALL multi-column grids on mobile */
@@ -210,11 +211,11 @@ img { max-width: 100%; height: auto; }
     padding: 7px 12px !important;
   }
   /* Hero rotator on small screens */
-  section[style*="min-height: 720px"] > div:last-child > div[class="fade-up"][style*="font-size: 32px"] {
+  section[style*="min-height: 720px"] > div:nth-child(3) > div[class="fade-up"][style*="font-size: 32px"] {
     font-size: 22px !important;
   }
   /* Hero photo block height on small phones */
-  section[style*="min-height: 720px"] > div:last-child::before {
+  section[style*="min-height: 720px"] > div:nth-child(3)::before {
     height: 60vw;
     min-height: 240px;
     max-height: 320px;
