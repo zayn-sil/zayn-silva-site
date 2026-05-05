@@ -46,26 +46,69 @@ img { max-width: 100%; height: auto; }
   nav > div:first-child { font-size: 13px !important; letter-spacing: 3px !important; }
   nav > div:last-child { font-size: 10px !important; }
 
-  /* HERO: full width text, smaller heading, image fades softer */
-  section[style*="min-height: 720px"] { min-height: auto !important; padding: 0 !important; }
+  /* HERO on mobile: full restructure - photo card on top, content card below.
+     We hide the dark photo-overlay (it crops badly on phones) and inject a real photo via ::before. */
+  section[style*="min-height: 720px"] { min-height: auto !important; padding: 0 !important; background: #0a0a0a !important; }
+  /* Hide both gradient overlay divs on mobile - they're sized for desktop */
+  section[style*="min-height: 720px"] > div:first-child,
+  section[style*="min-height: 720px"] > div:nth-child(2) {
+    display: none !important;
+  }
+  /* Content wrapper becomes the whole hero, with a real photo block stacked on top */
   section[style*="min-height: 720px"] > div:last-child {
     max-width: 100% !important;
-    padding: 70px 22px 50px !important;
+    padding: 0 !important;
     position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
-  /* Hero overlays: keep both, but darken image so text always reads on phone */
-  section[style*="min-height: 720px"] > div:first-child {
-    background: linear-gradient(180deg, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.7) 60%, rgba(10,10,10,0.5) 100%), url('zayn-hero-speaking.jpg') !important;
-    background-size: cover !important;
-    background-position: center top !important;
+  /* Inject a real photo block above the content, full-width with a soft fade at the bottom */
+  section[style*="min-height: 720px"] > div:last-child::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 56vw;
+    max-height: 380px;
+    min-height: 280px;
+    background: linear-gradient(180deg, rgba(10,10,10,0) 60%, rgba(10,10,10,0.85) 100%), url('zayn-hero-speaking.jpg');
+    background-size: cover;
+    background-position: center 25%;
+    flex-shrink: 0;
   }
-  h1, h1[class="fade-up"] { font-size: 42px !important; line-height: 1.05 !important; letter-spacing: -1.5px !important; }
+  /* Pull content up slightly so it overlaps the photo's bottom fade */
+  section[style*="min-height: 720px"] > div:last-child > * {
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+    position: relative;
+    z-index: 2;
+  }
+  section[style*="min-height: 720px"] > div:last-child > *:first-child {
+    margin-top: -32px !important;
+  }
+  /* Content gets a top padding gap, bottom padding for the buttons */
+  section[style*="min-height: 720px"] > div:last-child > *:last-child {
+    padding-bottom: 56px !important;
+  }
+  /* Hero typography: scaled for phone */
+  h1, h1[class="fade-up"] { font-size: 56px !important; line-height: 1 !important; letter-spacing: -2px !important; margin-bottom: 8px !important; }
+  /* Rotator line on mobile */
+  section[style*="min-height: 720px"] > div:last-child > div[class="fade-up"][style*="font-size: 32px"] {
+    font-size: 24px !important;
+    margin-bottom: 22px !important;
+  }
   #rotator { min-width: 0 !important; display: inline !important; }
-  /* Hero pill smaller on mobile */
+  /* Tagline above name: smaller letter spacing on mobile */
+  section[style*="min-height: 720px"] > div:last-child > div[class="fade-up"][style*="letter-spacing: 3.5px"] {
+    font-size: 11px !important;
+    letter-spacing: 2px !important;
+    margin-bottom: 14px !important;
+  }
+  /* Hero pill */
   section[style*="min-height: 720px"] [class*="fade-up"][style*="border-radius: 999px"] {
     font-size: 11px !important;
     padding: 8px 14px !important;
     letter-spacing: 1.5px !important;
+    margin-bottom: 22px !important;
   }
   /* Hero description paragraph */
   section[style*="min-height: 720px"] p { font-size: 16px !important; }
@@ -144,7 +187,7 @@ img { max-width: 100%; height: auto; }
 
 @media (max-width: 480px) {
   section { padding: 50px 16px !important; }
-  h1, h1[class="fade-up"] { font-size: 36px !important; }
+  h1, h1[class="fade-up"] { font-size: 46px !important; letter-spacing: -1.5px !important; }
   h2 { font-size: 26px !important; }
   .pride-cta { padding: 16px 22px !important; font-size: 14px !important; width: 100%; justify-content: center; box-sizing: border-box; }
   .book-cta, .ghost-btn, .modern-btn { padding: 12px 20px !important; font-size: 13.5px !important; }
@@ -157,6 +200,21 @@ img { max-width: 100%; height: auto; }
   section[style*="min-height: 720px"] [class*="fade-up"][style*="border-radius: 999px"] {
     font-size: 10px !important;
     padding: 7px 12px !important;
+  }
+  /* Hero rotator on small screens */
+  section[style*="min-height: 720px"] > div:last-child > div[class="fade-up"][style*="font-size: 32px"] {
+    font-size: 22px !important;
+  }
+  /* Hero photo block height on small phones */
+  section[style*="min-height: 720px"] > div:last-child::before {
+    height: 60vw;
+    min-height: 240px;
+    max-height: 320px;
+  }
+  /* Side-by-side hero buttons stack full width on small phones */
+  section[style*="min-height: 720px"] [style*="display: flex"][style*="gap: 14px"] a {
+    width: 100%;
+    justify-content: center;
   }
   /* Footer logo letter-spacing tightens */
   nav > div:first-child { letter-spacing: 2px !important; font-size: 12px !important; }
@@ -187,9 +245,12 @@ img { max-width: 100%; height: auto; }
       <span>Now booking 2026 Pride Month & Fall Engagements</span>
     </div>
     <div class="fade-up" style="font-size: 12px; letter-spacing: 3.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); font-weight: 600; margin-bottom: 18px;">Speaker · Faith Leader · Culture & Identity Strategist</div>
-    <h1 class="fade-up" style="font-size: 84px; line-height: 1; font-weight: 400; margin: 0 0 28px; letter-spacing: -3px; color: #fff; font-family: Georgia, 'Times New Roman', serif;">
+    <h1 class="fade-up" style="font-size: 84px; line-height: 1; font-weight: 400; margin: 0 0 14px; letter-spacing: -3px; color: #fff; font-family: Georgia, 'Times New Roman', serif;">
       Zayn Silva
     </h1>
+    <div class="fade-up" style="font-size: 32px; line-height: 1.2; font-weight: 400; margin: 0 0 30px; letter-spacing: -0.8px; color: rgba(255,255,255,0.5); font-family: Georgia, 'Times New Roman', serif; font-style: italic;">
+      a <span id="rotator" style="color: #f59e0b; transition: opacity 0.4s, color 0.4s; display: inline-block; min-width: 240px;">speaker</span>
+    </div>
     <p class="fade-up" style="font-size: 20px; line-height: 1.5; color: rgba(255,255,255,0.85); max-width: 660px; margin: 0 0 36px; font-weight: 400;">
       Keynote speaker helping organizations, schools, and faith communities navigate identity, belonging, and leadership when the conversation feels difficult, risky, or avoided.
     </p>
@@ -622,6 +683,22 @@ img { max-width: 100%; height: auto; }
   if (document.head) document.head.appendChild(ldScript);
 })();
 (function(){
+  const roles = ["speaker","preacher","strategist","advocate","truth-teller"];
+  const colors = ["#f59e0b","#7c3aed","#22c55e","#ec4899","#60a5fa"];
+  let i = 0;
+  const el = document.getElementById("rotator");
+  if (el) {
+    setInterval(function(){
+      el.style.opacity = "0";
+      setTimeout(function(){
+        i = (i + 1) % roles.length;
+        el.textContent = roles[i];
+        el.style.color = colors[i];
+        el.style.opacity = "1";
+      }, 400);
+    }, 2400);
+  }
+
   const counters = document.querySelectorAll(".counter");
   let triggered = false;
   function animateCounters(){
