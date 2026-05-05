@@ -113,6 +113,14 @@ img { max-width: 100%; height: auto; }
   /* Hero description paragraph */
   section[style*="min-height: 720px"] p { font-size: 16px !important; }
 
+  /* Photo credit on mobile: sit at the bottom-right of the photo block (which ends ~360-380px down) */
+  .hero-credit {
+    bottom: auto !important;
+    top: calc(56vw - 24px) !important;
+    right: 14px !important;
+    font-size: 9.5px !important;
+  }
+
   /* Stack ALL multi-column grids on mobile */
   [style*="grid-template-columns: repeat(4"],
   [style*="grid-template-columns: repeat(3"],
@@ -262,6 +270,7 @@ img { max-width: 100%; height: auto; }
       <a href="https://www.instagram.com/reel/DMJEqc_u6kZ/" target="_blank" rel="noopener noreferrer" class="ghost-btn" style="text-decoration: none; display: inline-flex; align-items: center;">Watch Zayn in Action</a>
     </div>
   </div>
+  <a href="https://freedomrisingconference.com" target="_blank" rel="noopener noreferrer" class="hero-credit" style="position: absolute; bottom: 16px; right: 20px; z-index: 5; font-size: 10.5px; color: rgba(255,255,255,0.4); text-decoration: none; letter-spacing: 0.4px; font-weight: 400; font-family: 'Inter', system-ui, sans-serif; transition: color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.85)'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Photo credit: freedomrisingconference</a>
 </section>
 
 <section style="background: #fff; color: #0a0a0a; padding: 64px 48px; border-top: 1px solid rgba(0,0,0,0.08); border-bottom: 1px solid rgba(0,0,0,0.08);">
@@ -488,47 +497,22 @@ img { max-width: 100%; height: auto; }
   </div>
 </section>
 <section id="contact" style="background: #fff; color: #0a0a0a; padding: 110px 48px; scroll-margin-top: 80px;">
-  <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start;">
-    <div>
-      <div class="section-num" style="margin-bottom: 18px;">Inquire</div>
-      <h2 style="font-size: 46px; line-height: 1.05; font-weight: 600; margin: 0 0 24px; letter-spacing: -1.5px; font-family: 'Inter', system-ui, sans-serif;">Bring Zayn to your organization.</h2>
-      <p style="font-size: 16px; line-height: 1.7; color: rgba(0,0,0,0.7); margin: 0 0 24px;">Tell me about your event, audience, and goals. I'll follow up with availability and next steps within 24 hours.</p>
-      <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); border-radius: 999px; margin-bottom: 8px;">
-        <span class="live-dot"></span>
-        <span style="font-size: 12.5px; font-weight: 600; color: #15803d; letter-spacing: 0.2px;">Now booking 2026 Pride Month & Fall Assemblies</span>
-      </div>
-      <div style="font-size: 13px; color: rgba(0,0,0,0.55); margin-top: 16px; line-height: 1.55;">Speaking fees vary based on event type, audience, location, and scope. Please inquire for rates and availability.</div>
-      <div style="border-top: 1px solid rgba(0,0,0,0.12); padding-top: 28px; margin-top: 36px;">
-        <div style="font-size: 12px; color: rgba(0,0,0,0.55); margin-bottom: 12px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500;">Or reach me directly</div>
-        <a href="mailto:zayn@zaynsilva.com" style="font-size: 18px; font-weight: 500; color: #0a0a0a; text-decoration: none; display: inline-block; border-bottom: 1.5px solid #0a0a0a; padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;" onmouseover="this.style.color='#7c3aed';this.style.borderColor='#7c3aed'" onmouseout="this.style.color='#0a0a0a';this.style.borderColor='#0a0a0a'">zayn@zaynsilva.com</a>
-        <div style="display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap;">
-          <a href="https://instagram.com/iamzaynsilva" target="_blank" rel="noopener noreferrer" class="social-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
-              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
-              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
-            </svg>
-            Instagram
-          </a>
-          <a href="https://linkedin.com/in/zayn-silva" target="_blank" rel="noopener noreferrer" class="social-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19 3H5C3.895 3 3 3.895 3 5V19C3 20.105 3.895 21 5 21H19C20.105 21 21 20.105 21 19V5C21 3.895 20.105 3 19 3ZM9 17H6.477V10H9V17ZM7.694 8.717C6.923 8.717 6.408 8.203 6.408 7.517C6.408 6.831 6.922 6.317 7.779 6.317C8.55 6.317 9.065 6.831 9.065 7.517C9.065 8.203 8.551 8.717 7.694 8.717ZM18 17H15.558V13.174C15.558 12.116 14.907 11.872 14.663 11.872C14.419 11.872 13.605 12.035 13.605 13.174C13.605 13.337 13.605 17 13.605 17H11.082V10H13.605V10.977C13.93 10.407 14.581 10 15.802 10C17.023 10 18 10.977 18 13.174V17Z"/>
-            </svg>
-            LinkedIn
-          </a>
-          <a href="https://zaynsilva.substack.com" target="_blank" rel="noopener noreferrer" class="social-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-            </svg>
-            Substack
-          </a>
+  <div style="max-width: 1180px; margin: 0 auto;">
+    <div style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 64px; align-items: start;">
+      <div>
+        <div class="section-num" style="margin-bottom: 18px;">Inquire</div>
+        <h2 style="font-size: 46px; line-height: 1.05; font-weight: 600; margin: 0 0 24px; letter-spacing: -1.5px; font-family: 'Inter', system-ui, sans-serif;">Bring Zayn to your organization.</h2>
+        <p style="font-size: 16px; line-height: 1.7; color: rgba(0,0,0,0.7); margin: 0 0 24px;">Tell me about your event, audience, and goals. I'll follow up with availability and next steps within 24 hours.</p>
+        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); border-radius: 999px; margin-bottom: 8px;">
+          <span class="live-dot"></span>
+          <span style="font-size: 12.5px; font-weight: 600; color: #15803d; letter-spacing: 0.2px;">Now booking 2026 Pride Month & Fall Assemblies</span>
         </div>
+        <div style="font-size: 13px; color: rgba(0,0,0,0.55); margin-top: 16px; line-height: 1.55;">Speaking fees vary based on event type, audience, location, and scope. Please inquire for rates and availability.</div>
       </div>
-    </div>
 
-    <div id="form-wrap">
-      <p style="font-size: 18px; font-weight: 500; line-height: 1.5; color: #0a0a0a; margin: 0 0 24px; font-style: italic; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.1);">If you're building a space where truth matters, I'd love to be part of it.</p>
-      <form id="inquiryForm" action="https://formspree.io/f/xgodaaew" method="POST" style="display: flex; flex-direction: column; gap: 16px;" novalidate>
+      <div id="form-wrap">
+        <p style="font-size: 18px; font-weight: 500; line-height: 1.5; color: #0a0a0a; margin: 0 0 24px; font-style: italic; padding-bottom: 20px; border-bottom: 1px solid rgba(0,0,0,0.1);">If you're building a space where truth matters, I'd love to be part of it.</p>
+        <form id="inquiryForm" action="https://formspree.io/f/xgodaaew" method="POST" style="display: flex; flex-direction: column; gap: 16px;" novalidate>
         <input type="hidden" name="_subject" value="New booking inquiry from zaynsilva.com" />
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
           <div>
@@ -587,6 +571,34 @@ img { max-width: 100%; height: auto; }
       </div>
       <h3 style="font-size: 24px; font-weight: 600; margin: 0 0 12px; color: #0a0a0a; letter-spacing: -0.5px;">Thank you for inquiring.</h3>
       <p style="font-size: 16px; line-height: 1.6; color: rgba(0,0,0,0.7); margin: 0; max-width: 400px; margin: 0 auto;">I will respond to you within 24 hours.</p>
+    </div>
+    </div>
+
+    <div style="margin-top: 72px; padding-top: 48px; border-top: 1px solid rgba(0,0,0,0.12); text-align: center;">
+      <div style="font-size: 12px; color: rgba(0,0,0,0.55); margin-bottom: 16px; letter-spacing: 2px; text-transform: uppercase; font-weight: 500;">Or reach me directly</div>
+      <a href="mailto:zayn@zaynsilva.com" style="font-size: 20px; font-weight: 500; color: #0a0a0a; text-decoration: none; display: inline-block; border-bottom: 1.5px solid #0a0a0a; padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;" onmouseover="this.style.color='#7c3aed';this.style.borderColor='#7c3aed'" onmouseout="this.style.color='#0a0a0a';this.style.borderColor='#0a0a0a'">zayn@zaynsilva.com</a>
+      <div style="display: flex; gap: 10px; margin-top: 28px; flex-wrap: wrap; justify-content: center;">
+        <a href="https://instagram.com/iamzaynsilva" target="_blank" rel="noopener noreferrer" class="social-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+          </svg>
+          Instagram
+        </a>
+        <a href="https://linkedin.com/in/zayn-silva" target="_blank" rel="noopener noreferrer" class="social-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 3H5C3.895 3 3 3.895 3 5V19C3 20.105 3.895 21 5 21H19C20.105 21 21 20.105 21 19V5C21 3.895 20.105 3 19 3ZM9 17H6.477V10H9V17ZM7.694 8.717C6.923 8.717 6.408 8.203 6.408 7.517C6.408 6.831 6.922 6.317 7.779 6.317C8.55 6.317 9.065 6.831 9.065 7.517C9.065 8.203 8.551 8.717 7.694 8.717ZM18 17H15.558V13.174C15.558 12.116 14.907 11.872 14.663 11.872C14.419 11.872 13.605 12.035 13.605 13.174C13.605 13.337 13.605 17 13.605 17H11.082V10H13.605V10.977C13.93 10.407 14.581 10 15.802 10C17.023 10 18 10.977 18 13.174V17Z"/>
+          </svg>
+          LinkedIn
+        </a>
+        <a href="https://zaynsilva.substack.com" target="_blank" rel="noopener noreferrer" class="social-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+          </svg>
+          Substack
+        </a>
+      </div>
     </div>
   </div>
 </section>
